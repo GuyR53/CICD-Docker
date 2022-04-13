@@ -41,6 +41,8 @@ stages:
    
 # Continuous Deployment Process for Staging Environment
 - stage: DeployToStaging
+  variables:
+  - group: envStage
   condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
   jobs:
   - deployment: staging
@@ -63,6 +65,34 @@ stages:
               script: |
                 docker rm -f $(docker ps -qa)
                 docker run -d -p 8080:8080 --name=bootcamp myazurecr1.azurecr.io/dockerapp:$(tag)
+                docker exec -it bootcamp bash
+                cat <<EOF >.env
+                # Host configuration
+                        
+                          PORT=8080
+                          HOST=0.0.0.0
+                          
+                          
+                          # Postgres
+                          PGHOST=$(PGHOST)
+                          PGUSERNAME=$(PGUSERNAMEE)
+                          PGDATABASE=$(PGDBNAME)
+                          PGPASSWORD=$(PGPASS)
+                          PGPORT=$(PGPORT)
+                          
+                          # Host Configurations
+                          HOST_URL=$(HOST_URL)
+                          COOKIE_ENCRYPT_PWD=superAwesomePasswordStringThatIsAtLeast32CharactersLong!
+                          NODE_ENV=development
+                                     
+                          # Okta configuration
+                           
+                          OKTA_ORG_URL=$(OKTAURL)
+                          OKTA_CLIENT_ID= $(OKTAID)
+                          OKTA_CLIENT_SECRET= $(OKTASECRET)
+                
+                EOF
+                exit
 
 
 # Continuous Delivery Process for Production Environment
