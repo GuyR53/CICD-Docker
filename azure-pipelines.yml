@@ -92,7 +92,7 @@ stages:
                           OKTA_CLIENT_SECRET= $(OKTASECRET)
                 
                 EOF
-                exit
+                
 
 
 # Continuous Delivery Process for Production Environment
