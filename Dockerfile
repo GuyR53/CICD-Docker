@@ -14,4 +14,4 @@ COPY . .
 ENV PORT=8080
 EXPOSE 8080 
 CMD ["npm", "run", "test", "--if-present"]
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "dev"]
