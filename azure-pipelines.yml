@@ -45,6 +45,8 @@ stages:
   jobs:
   - deployment: staging
     displayName: Deploy to Staging
+    pool:
+      name: StagingPool
     environment:
       name: Staging
     strategy:
