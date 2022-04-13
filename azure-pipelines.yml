@@ -47,7 +47,6 @@ stages:
     displayName: Deploy to Staging
     environment:
       name: Staging
-      resourceType: VirtualMachine
     strategy:
       runOnce:
         deploy:
