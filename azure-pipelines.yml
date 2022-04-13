@@ -40,21 +40,28 @@ stages:
 
    
 # Continuous Deployment Process for Staging Environment
-#- stage: DeployToStaging
-  #condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
- # jobs:
- #- deployment: staging
-    #displayName: Deploy to Staging
-    #pool:
-     # name: StagingPool
-    #environment:
-      #name: Staging
-     # resourceType: VirtualMachine
-    #strategy:
-      #runOnce:
-      #  deploy:
-     #     steps:
-         # - <<YOUR TASKS>>
+- stage: DeployToStaging
+  condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
+  jobs:
+  - deployment: staging
+    displayName: Deploy to Staging
+    environment:
+      name: Staging
+      resourceType: VirtualMachine
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: Docker@2
+            inputs:
+              containerRegistry: 'MyAzureCR1'
+              command: 'login'
+
+          - task: CmdLine@2
+            inputs:
+              script: |
+                docker rm -f $(docker ps -qa)
+                docker run -d -p 8080:8080 --name=bootcamp MyAzureCR1.azurecr.io/dockerapp: $(tag)
 
 
 # Continuous Delivery Process for Production Environment
