@@ -65,7 +65,6 @@ stages:
               script: |
                 docker rm -f $(docker ps -qa)
                 docker run -p 8080:8080  --mount type=bind,source=/home/Ansible-Controler/myagent/_work/1/s,target=/usr/src/app -it bootcamp
-               # docker run -d -p 8080:8080 -d --name=bootcamp myazurecr1.azurecr.io/dockerapp:$(tag)
                 cat <<EOF >.env
                 # Host configuration
                         
