@@ -91,6 +91,7 @@ stages:
                           OKTA_CLIENT_SECRET= $(OKTASECRET)
                 
                 EOF
+                docker run -d --volume /home/Ansible-Controler/myagent/_work/1/s/.env:/usr/src/app.env
                 
                 
                 
