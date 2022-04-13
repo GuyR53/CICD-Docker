@@ -40,36 +40,36 @@ stages:
 
 
 # Continuous Deployment Process for Staging Environment
-- stage: DeployToStaging
-  condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
-  jobs:
-  - deployment: staging
-    displayName: Deploy to Staging
-    pool:
-      name: StagingPool
-    environment:
-      name: Staging
-      resourceType: VirtualMachine
-    strategy:
-      runOnce:
-        deploy:
-          steps:
+#- stage: DeployToStaging
+  #condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
+ # jobs:
+ #- deployment: staging
+    #displayName: Deploy to Staging
+    #pool:
+     # name: StagingPool
+    #environment:
+      #name: Staging
+     # resourceType: VirtualMachine
+    #strategy:
+      #runOnce:
+      #  deploy:
+     #     steps:
          # - <<YOUR TASKS>>
 
 
 # Continuous Delivery Process for Production Environment
-- stage: DeployToProduction
-  condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
-  jobs:
-  - deployment: production
-    displayName: Deploy to Production
-    pool:
-      name: ProductionPool
-    environment:
-      name: Production
-      resourceType: VirtualMachine
-    strategy:
-      runOnce:
-        deploy:
-          steps:
+#- stage: DeployToProduction
+ # condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
+  #jobs:
+  #- deployment: production
+   # displayName: Deploy to Production
+    #pool:
+     # name: ProductionPool
+   # environment:
+    #  name: Production
+     # resourceType: VirtualMachine
+    #strategy:
+     # runOnce:
+      #  deploy:
+       #   steps:
        #   - <<YOUR TASKS>>
