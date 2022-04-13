@@ -13,7 +13,7 @@ variables:
   dockerRegistryServiceConnection: '2439aa01-ecbd-4f2b-a801-6fc0d1d50cc1'
   imageRepository: 'dockerapp'
   containerRegistry: 'myazurecr1.azurecr.io'
-  dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
+  dockerfilePath: '/Dockerfile'
   tag: '$(Build.BuildId)'
 
   
