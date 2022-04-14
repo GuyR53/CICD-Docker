@@ -106,10 +106,9 @@ stages:
               ansibleInterface: 'agentMachine'
               playbookPathOnAgentMachine: '$(PlaybookPath)'
               inventoriesAgentMachine: 'file'
-              inventoryFileOnAgentMachine: '$(InentoryPath)'
+              inventoryFileOnAgentMachine: 'InentoryPath'
               args: '--extra-vars server_env_group="$(HostType)"'
               failOnStdErr: false
-            displayName: "playing ansible playbook"
 
                 
                 
