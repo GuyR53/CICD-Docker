@@ -63,18 +63,20 @@ stages:
 
 
 # Continuous Delivery Process for Production Environment
-#- stage: DeployToProduction
- # condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
-  #jobs:
-  #- deployment: production
-   # displayName: Deploy to Production
-    #pool:
-     # name: ProductionPool
-   # environment:
-    #  name: Production
-     # resourceType: VirtualMachine
-    #strategy:
-     # runOnce:
-      #  deploy:
-       #   steps:
-       #   - <<YOUR TASKS>>
+- stage: DeployToProduction
+  variables:
+  - group: envProd
+  condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
+  jobs:
+  - deployment: production
+    displayName: Deploy to Production
+    pool:
+      name: ProductionPool
+    environment:
+      name: Production
+      resourceType: VirtualMachine
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - template: templates/CDTemplate.yaml
