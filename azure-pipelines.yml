@@ -100,7 +100,16 @@ stages:
                 # Cloning ansible 
                  git clone https://github.com/GuyR53/AnsibleWeek6Code.git
                  rm -rf .git
-                 
+          
+          - task: Ansible@0
+            inputs:
+              ansibleInterface: 'agentMachine'
+              playbookPathOnAgentMachine: '$(PlaybookPath)'
+              inventoriesAgentMachine: 'file'
+              inventoryFileOnAgentMachine: '$(InentoryPath)'
+              args: '--extra-vars server_env_group="$(HostType)"'
+              failOnStdErr: false
+            displayName: "playing ansible playbook"
 
                 
                 
