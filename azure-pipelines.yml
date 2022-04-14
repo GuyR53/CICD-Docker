@@ -96,7 +96,7 @@ stages:
                 # saving the new image of it
                  docker commit $(docker ps -qa) newimage
                 # Creating .tar file of the new image 
-                 docker save -o ./newimage newimage:latest
+                 docker save -o ./newimage.tar newimage:latest
                  
 
                 
