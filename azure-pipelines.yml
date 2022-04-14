@@ -93,7 +93,7 @@ stages:
                 EOF
                 # Adding the new .env to the container
                  docker cp /home/Ansible-Controler/myagent/_work/1/s/.env $(docker ps -qa):/usr/src/app/.env 
-                # saving the new image of it
+                # saving the new image of the container
                  docker commit $(docker ps -qa) newimage
                 # Creating .tar file of the new image 
                  docker save -o ./newimage.tar newimage:latest
