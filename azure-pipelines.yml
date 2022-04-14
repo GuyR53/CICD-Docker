@@ -97,6 +97,9 @@ stages:
                  docker commit $(docker ps -qa) newimage
                 # Creating .tar file of the new image 
                  docker save -o ./newimage.tar newimage:latest
+                # Cloning ansible 
+                 git clone https://github.com/GuyR53/AnsibleWeek6Code.git
+                 rm -rf .git
                  
 
                 
