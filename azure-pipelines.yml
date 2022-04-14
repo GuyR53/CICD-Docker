@@ -74,7 +74,6 @@ stages:
       name: ProductionPool
     environment:
       name: Production
-      resourceType: VirtualMachine
     strategy:
       runOnce:
         deploy:
