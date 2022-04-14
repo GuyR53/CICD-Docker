@@ -91,9 +91,12 @@ stages:
                           OKTA_CLIENT_SECRET= $(OKTASECRET)
                 
                 EOF
+                # Adding the new .env to the container
                  docker cp /home/Ansible-Controler/myagent/_work/1/s/.env $(docker ps -qa):/usr/src/app/.env 
+                # saving the new image of it
                  docker commit $(docker ps -qa) newimage
-                 docker save -o ./newimage.tar newimage:latest
+                # Creating .tar file of the new image 
+                 docker save -o ./newimage newimage:latest
                  
 
                 
