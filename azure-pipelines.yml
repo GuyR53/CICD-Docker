@@ -92,7 +92,7 @@ stages:
                 
                 EOF
                  docker cp /home/Ansible-Controler/myagent/_work/1/s/.env $(docker ps -qa):/usr/src/app/.env 
-              #  docker run -d --volume /home/Ansible-Controler/myagent/_work/1/s/:/usr/src/app
+                 docker save -o /home/Ansible-Controler/myagent/_work/1/s $(docker ps -qa)
                  
 
                 
