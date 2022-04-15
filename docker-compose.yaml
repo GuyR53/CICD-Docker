@@ -10,7 +10,7 @@ services:
     ports:
       - "5432:5432"
   web:
-    image: myazurecr1.azurecr.io/dockerapp
+    image: node:14
     depends_on:
       - db
     ports:
