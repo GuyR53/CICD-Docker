@@ -1,12 +1,18 @@
 version: "3"
+
 services:
+
   db:
     image: postgres
     environment:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
+      POSTGRES_DB: mainDB
     ports:
-      - "5433:5432"
+      - "5432:5432"
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.0.5
 
   web:
     build: .
@@ -14,8 +20,16 @@ services:
       - db
     ports:
       - "8080:8080"
-    command: npm run dev
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.0.6
 
-   
 
+networks:
+  vpcbr:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 10.5.0.0/16
+         gateway: 10.5.0.1
     
