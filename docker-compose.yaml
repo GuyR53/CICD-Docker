@@ -8,10 +8,13 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
       POSTGRES_DB: mainDB
+    restart: always
     ports:
       - "5432:5432"
+    volumes:
+      -  ./init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
-      vpcbr:
+      guynet:
         ipv4_address: 10.5.0.5
 
   web:
@@ -21,15 +24,15 @@ services:
     ports:
       - "8080:8080"
     networks:
-      vpcbr:
+      guynet:
         ipv4_address: 10.5.0.6
-
-
+    
 networks:
-  vpcbr:
+  guynet:
     driver: bridge
     ipam:
      config:
        - subnet: 10.5.0.0/16
          gateway: 10.5.0.1
+  
     
