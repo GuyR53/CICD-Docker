@@ -1,4 +1,4 @@
-version: "3.7"
+version: "3"
 services:
   db:
     image: postgres
@@ -6,12 +6,16 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
     ports:
-      - "5432:5432"
+      - "5433:5432"
+
   web:
-    build: 
-      dockerfile: Dockerfile
+    build: .
     depends_on:
       - db
     ports:
-      - ":8080:8080"
+      - "8080:8080"
+    command: npm run dev
+
+   
+
     
