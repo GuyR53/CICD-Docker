@@ -15,9 +15,8 @@ COPY . .
 # Taking smaller image for multi stage
 
 FROM node:14-slim
-COPY --from=builder /usr/src/app /app
+COPY --from=builder /usr/src/app/ /app
 WORKDIR /app
-RUN npm install
 EXPOSE 8080
 CMD ["npm", "run", "initdb"]
 ENTRYPOINT [ "npm", "run","dev" ]
