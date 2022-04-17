@@ -1,4 +1,4 @@
-FROM node:14 as builder
+FROM node:14
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -11,11 +11,7 @@ RUN npm install
 # Bundle app source
 
 COPY . .
-EXPOSE 8080 
+EXPOSE 8080
 CMD ["npm", "run", "test", "--if-present"]
-FROM busybox:1.33.1 as server
-COPY --from=builder /usr/src/app /home/
-WORKDIR /home
-RUN npm install --production
 CMD ["npm", "run", "initdb"]
-ENTRYPOINT ["npm", "run", "dev"]
+ENTRYPOINT [ "npm", "run","dev" ]
