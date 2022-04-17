@@ -14,8 +14,9 @@ USER node
 COPY . .
 
 # Taking smaller image for multi stage
-USER node
+
 FROM node:14-slim
+USER node
 COPY --from=builder /usr/src/app /app
 WORKDIR /app
 EXPOSE 8080
