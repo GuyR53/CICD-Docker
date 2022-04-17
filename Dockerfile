@@ -14,7 +14,7 @@ COPY . .
 
 # Taking smaller image for multi stage
 
-FROM node:14-slim
+FROM node:14
 COPY --from=builder /usr/src/app /app
 WORKDIR /app
 EXPOSE 8080
