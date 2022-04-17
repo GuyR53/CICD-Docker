@@ -17,6 +17,7 @@ COPY . .
 FROM node:14
 COPY --from=builder /usr/src/app /app
 WORKDIR /app
+RUN npm install --only=prod
 EXPOSE 8080
 CMD ["npm", "run", "initdb"]
 ENTRYPOINT [ "npm", "run","dev" ]
