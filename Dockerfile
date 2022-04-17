@@ -15,6 +15,7 @@ EXPOSE 8080
 CMD ["npm", "run", "test", "--if-present"]
 FROM busybox:1.33.1 as server
 COPY --from=builder /usr/src/app /home/
+WORKDIR /home
 RUN npm install --production
 CMD ["npm", "run", "initdb"]
 ENTRYPOINT ["npm", "run", "dev"]
