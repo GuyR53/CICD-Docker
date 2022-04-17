@@ -10,13 +10,11 @@ RUN npm install
 CMD ["npm", "run", "test", "--if-present"]
 
 # Bundle app source
-USER node
 COPY . .
 
 # Taking smaller image for multi stage
 
 FROM node:14-slim
-USER node
 COPY --from=builder /usr/src/app /app
 WORKDIR /app
 EXPOSE 8080
